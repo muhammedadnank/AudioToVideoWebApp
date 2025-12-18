@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio to Video Converter - Black Screen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at top right, #000000, #1a1a2e, #16213e);
+            min-height: 100vh;
+            color: #ffffff;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(233, 69, 96, 0.4);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="glass-card w-full max-w-lg p-10 transform transition-all">
+        <div class="mb-8">
+            <h1 class="text-4xl font-extrabold mb-3 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+                Audio to Video
+            </h1>
+            <p class="text-gray-400 text-lg">
+                Convert MP3/Audio to MP4 with a sleek black background.
+            </p>
+        </div>
+
+        {% if error %}
+        <div class="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data" class="space-y-8">
+            {% csrf_token %}
+            <div class="space-y-3">
+                <label for="{{ form.original_video.id_for_label }}" class="block text-sm font-semibold text-gray-300 uppercase tracking-wider">
+                    Upload File
+                </label>
+                <div class="p-6 border-2 border-dashed border-gray-700 rounded-2xl bg-black/20 hover:border-blue-500/50 transition-colors">
+                    {{ form.original_video }}
+                    <div class="mt-3 text-xs text-gray-500">Supports: MP3, WAV, M4A, MP4, MOV</div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl btn-glow transition-all duration-300 transform hover:-translate-y-1">
+                Generate Video
+            </button>
+        </form>
+
+        {% if processed_video_url %}
+        <div class="mt-10 p-8 rounded-2xl bg-gradient-to-br from-gray-800/50 to-black/50 border border-blue-500/20">
+            <h2 class="text-xl font-bold text-white mb-5 flex items-center">
+                <span class="mr-3 text-2xl">⚡</span> Conversion Ready!
+            </h2>
+            <a href="{{ processed_video_url }}" class="flex items-center justify-center gap-3 w-full py-4 px-4 bg-white text-gray-900 font-bold rounded-xl hover:bg-gray-200 transition-all shadow-xl" download>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download MP4
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

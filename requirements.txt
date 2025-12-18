@@ -1,0 +1,17 @@
+asgiref==3.11.0
+decorator==5.2.1
+dj-database-url==3.0.1
+Django==6.0
+gunicorn==23.0.0
+ImageIO==2.37.2
+imageio-ffmpeg==0.6.0
+moviepy==2.2.1
+numpy==2.3.5
+packaging==25.0
+pillow==11.3.0
+proglog==0.1.12
+psycopg2-binary==2.9.11
+python-dotenv==1.2.1
+sqlparse==0.5.4
+tqdm==4.67.1
+whitenoise==6.11.0

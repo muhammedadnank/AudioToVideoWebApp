@@ -1,0 +1,12 @@
+venv/
+*.pyc
+__pycache__/
+db.sqlite3
+.env
+staticfiles/
+media/
+.gemini/
+.agent/
+task.md
+implementation_plan.md
+walkthrough.md

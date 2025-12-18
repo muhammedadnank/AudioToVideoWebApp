@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: audio-to-video-converter
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn video_project.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: 'False'
+      - key: DATABASE_URL
+        placeholder: "Enter your Supabase Connection String (Transaction mode recommended)"
+    mounts:
+      - key: media
+        mountPath: /opt/render/project/src/media
+        static: false
