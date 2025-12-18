@@ -30,8 +30,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-5x%310ri$#^%$531_%e*8h92vo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else ['*']
-
+ALLOWED_HOSTS = os.getenv(
+    "ALLOWED_HOSTS",
+    ".onrender.com"
+).split(",")
 
 # Application definition
 
